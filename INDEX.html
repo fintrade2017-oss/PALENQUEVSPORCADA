@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>La Porcada vs Isla Palenque — Comparativa de Mercado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --forest:#1a2820; --forest-deep:#0f1813; --cream:#f4ede0; --cream-warm:#ebe1cc;
+    --bronze:#a07d4e; --bronze-light:#c9a878; --sage:#7a8970; --charcoal:#2a2823;
+    --stone:#8a8378; --rust:#8c5a3c; --mex:#9c3d2e;
+  }
+  *{ -webkit-font-smoothing:antialiased; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Montserrat', sans-serif; background:var(--cream); color:var(--charcoal); font-weight:300; letter-spacing:0.02em; }
+  .serif{ font-family:'Cormorant Garamond', serif; }
+  .display{ font-family:'Cormorant Garamond', serif; font-weight:300; letter-spacing:-0.01em; }
+
+  .hero-wrap{ position:relative; width:100%; height:90vh; min-height:640px; overflow:hidden; background:var(--forest-deep); }
+  .hero-bg{ position:absolute; inset:0; background-image:url("images/ECORESORT.png"); background-size:cover; background-position:center; filter:brightness(0.5) saturate(0.85); }
+  .hero-vignette{ position:absolute; inset:0; background: radial-gradient(ellipse at center, rgba(0,0,0,0) 25%, rgba(0,0,0,0.65) 100%), linear-gradient(to bottom, rgba(15,24,19,0.5) 0%, rgba(15,24,19,0.2) 40%, rgba(15,24,19,0.85) 100%); z-index:2; }
+  .hero-content{ position:relative; z-index:5; height:100%; display:flex; flex-direction:column; justify-content:space-between; padding:2.5rem 4rem; color:var(--cream); }
+  @media (max-width:768px){ .hero-content{ padding:1.5rem 1.5rem; } }
+
+  .grain::after{ content:""; position:absolute; inset:0; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); opacity:0.3; mix-blend-mode:overlay; pointer-events:none; z-index:3; }
+
+  .lang-btn{ border:1px solid rgba(244,237,224,0.35); color:var(--cream); backdrop-filter:blur(8px); background:rgba(15,24,19,0.25); transition:all .35s ease; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; }
+  .lang-btn:hover{ background:var(--bronze); border-color:var(--bronze); color:var(--cream); }
+  .lang-btn.active{ background:var(--cream); color:var(--forest-deep); border-color:var(--cream); }
+
+  .section-pad{ padding:7rem 2rem; }
+  @media (max-width:768px){ .section-pad{ padding:4.5rem 1.25rem; } }
+
+  .eyebrow{ font-size:11px; letter-spacing:0.4em; text-transform:uppercase; color:var(--bronze); font-weight:500; }
+  .rule{ height:1px; background:linear-gradient(to right, transparent, var(--bronze) 50%, transparent); width:80px; }
+
+  .metric-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(160,125,78,0.25); border:1px solid rgba(160,125,78,0.25); }
+  @media (max-width:768px){ .metric-grid{ grid-template-columns:repeat(2,1fr); } }
+  .metric-cell{ background:var(--cream); padding:2rem 1.5rem; }
+  .metric-num{ font-family:'Cormorant Garamond', serif; font-size:2.6rem; font-weight:300; line-height:1; color:var(--forest); margin-bottom:0.4rem; }
+  .metric-num em{ font-style:italic; color:var(--bronze); font-size:1.4rem; }
+  .metric-num .mex{ color:var(--mex); }
+  .metric-label{ font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--stone); }
+
+  .compare-table{ width:100%; border-collapse:collapse; font-size:13px; }
+  .compare-table thead th{ text-align:left; padding:1.2rem 1.4rem; font-size:10px; letter-spacing:0.25em; text-transform:uppercase; border-bottom:1px solid var(--bronze); background:var(--cream-warm); vertical-align:bottom; }
+  .compare-table thead th.careyes-h{ color:var(--mex); }
+  .compare-table thead th.porcada-h{ color:var(--forest); }
+  .compare-table tbody td{ padding:1.2rem 1.4rem; border-bottom:1px solid rgba(42,40,35,0.1); vertical-align:top; line-height:1.55; }
+  .compare-table tbody tr:hover{ background:rgba(160,125,78,0.04); }
+  .compare-table .criterio{ font-family:'Cormorant Garamond', serif; font-size:1.15rem; color:var(--forest); font-weight:500; }
+  .compare-table .criterio small{ display:block; font-family:'Montserrat', sans-serif; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone); margin-top:3px; font-weight:400; }
+  .compare-table .careyes{ color:#5a3528; }
+  .compare-table .porcada{ color:var(--forest); font-weight:400; }
+  .compare-table .porcada strong{ color:var(--bronze); font-weight:500; }
+  .verdict-dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:8px; vertical-align:middle; }
+  .verdict-dot.porcada-wins{ background:var(--bronze); }
+  .verdict-dot.tie{ background:var(--sage); }
+  .verdict-dot.careyes-wins{ background:var(--mex); }
+
+  .vs-block{ display:grid; grid-template-columns:1fr 80px 1fr; gap:0; align-items:stretch; margin-bottom:5rem; }
+  @media (max-width:768px){ .vs-block{ grid-template-columns:1fr; gap:1.5rem; } .vs-divider{ display:none; } }
+  .vs-side{ padding:2.5rem 2rem; }
+  .vs-side.careyes{ background:var(--cream-warm); border-left:2px solid var(--mex); }
+  .vs-side.porcada{ background:var(--forest-deep); color:var(--cream); border-left:2px solid var(--bronze); }
+  .vs-side.porcada .vs-label{ color:var(--bronze-light); }
+  .vs-side.porcada .vs-num{ color:var(--cream); }
+  .vs-side.porcada .vs-num em{ color:var(--bronze-light); }
+  .vs-side.porcada .vs-desc{ color:rgba(244,237,224,0.75); }
+  .vs-divider{ display:flex; align-items:center; justify-content:center; background:var(--cream); border-top:1px solid rgba(160,125,78,0.25); border-bottom:1px solid rgba(160,125,78,0.25); }
+  .vs-divider span{ font-family:'Cormorant Garamond', serif; font-size:1.6rem; font-style:italic; color:var(--bronze); }
+  .vs-label{ font-size:10px; letter-spacing:0.4em; text-transform:uppercase; color:var(--mex); margin-bottom:0.6rem; }
+  .vs-num{ font-family:'Cormorant Garamond', serif; font-size:2.8rem; font-weight:300; line-height:1; color:var(--forest); margin-bottom:0.6rem; }
+  .vs-num em{ font-style:italic; color:var(--bronze); font-size:1.4rem; }
+  .vs-desc{ font-size:12px; line-height:1.65; color:var(--charcoal); opacity:0.85; }
+
+  .verdict-row{ display:grid; grid-template-columns:60px 1fr 1.5fr 120px; gap:1.5rem; padding:1.5rem 0; border-top:1px solid rgba(42,40,35,0.12); align-items:center; }
+  .verdict-row:last-child{ border-bottom:1px solid rgba(42,40,35,0.12); }
+  .verdict-num{ font-family:'Cormorant Garamond', serif; font-size:1.4rem; font-style:italic; color:var(--bronze); line-height:1.2; }
+  .verdict-criterio{ font-family:'Cormorant Garamond', serif; font-size:1.2rem; color:var(--forest); }
+  .verdict-arg{ font-size:12px; line-height:1.6; color:var(--charcoal); }
+  .verdict-tag{ text-align:right; font-size:9px; letter-spacing:0.3em; text-transform:uppercase; font-weight:600; }
+  .verdict-tag.porcada-wins{ color:var(--bronze); }
+  .verdict-tag.tie{ color:var(--sage); }
+  .verdict-tag.careyes-wins{ color:var(--mex); }
+  @media (max-width:768px){ .verdict-row{ grid-template-columns:40px 1fr; gap:0.8rem; } .verdict-arg, .verdict-tag{ grid-column:2; } .verdict-tag{ text-align:left; margin-top:0.4rem; } }
+
+  .marquee{ overflow:hidden; white-space:nowrap; border-top:1px solid rgba(244,237,224,0.15); border-bottom:1px solid rgba(244,237,224,0.15); background:var(--forest-deep); color:var(--cream-warm); padding:1.4rem 0; }
+  .marquee-inner{ display:inline-block; animation:scroll 42s linear infinite; font-family:'Cormorant Garamond', serif; font-size:1.35rem; font-style:italic; letter-spacing:0.05em; }
+  @keyframes scroll{ 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+  .marquee-inner span{ padding:0 2.5rem; }
+  .marquee-inner span::before{ content:"✦"; color:var(--bronze); margin-right:2.5rem; }
+
+  .note-box{ background:var(--cream-warm); border-left:3px solid var(--bronze); padding:1.5rem 2rem; margin:2rem 0; }
+  .note-box .note-kicker{ font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--bronze); margin-bottom:0.5rem; font-weight:500; }
+  .note-box p{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.05rem; color:var(--forest); margin:0; line-height:1.55; }
+
+  .reveal{ opacity:0; transform:translateY(30px); transition:opacity 1s ease, transform 1s ease; }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+
+  footer{ background:var(--forest-deep); color:var(--cream-warm); padding:5rem 2rem 2rem; }
+  .footer-logo{ font-family:'Cormorant Garamond', serif; font-size:2.4rem; font-weight:300; letter-spacing:0.05em; }
+  ::-webkit-scrollbar{ width:8px; }
+  ::-webkit-scrollbar-track{ background:var(--cream-warm); }
+  ::-webkit-scrollbar-thumb{ background:var(--bronze); }
+  .logo-mark{ width:60px; height:60px; object-fit:contain; filter:brightness(0) invert(1); opacity:0.95; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero-wrap grain">
+  <div class="hero-bg"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-content">
+    <div class="flex items-start justify-between">
+      <div class="flex items-center gap-4">
+        <img src="images/LOGO.png" alt="TAKYMA" class="logo-mark" />
+        <div>
+          <div class="serif text-xl leading-none">Takyma</div>
+          <div class="text-[10px] tracking-[0.3em] uppercase opacity-70 mt-1">Investment Pioneer</div>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <button class="lang-btn active px-3 py-2" data-lang="es">ES</button>
+        <button class="lang-btn px-3 py-2" data-lang="en">EN</button>
+      </div>
+    </div>
+
+    <div class="flex-1 flex flex-col justify-center items-start" style="max-width:980px;">
+      <div class="eyebrow mb-6" style="color:var(--bronze-light);" data-i18n="hero.eyebrow">Comparativa de mercado · Capítulo 27 · Competencia vecina</div>
+      <h1 class="display text-[clamp(2.6rem,7.5vw,7rem)] leading-[0.95] mb-8">
+        <span data-i18n="hero.h1">La Porcada</span>
+        <em class="italic" style="color:var(--bronze-light);"> vs </em>
+        <span data-i18n="hero.h2">Isla Palenque</span>
+      </h1>
+      <p class="serif italic text-lg md:text-2xl max-w-2xl opacity-85" data-i18n="hero.sub">
+        El eco-resort vecino del Golfo de Chiriquí — 8 casitas en 400 acres — frente a La Porcada, isla de 437 ha con Aman, Denniston y dos productos premium. El comparativo del vecino directo.
+      </p>
+    </div>
+
+    <div class="flex items-end justify-between text-[11px] tracking-[0.3em] uppercase opacity-70">
+      <div data-i18n="hero.loc">Golfo de Chiriquí · Panamá · 2026</div>
+      <div class="hidden md:block serif italic normal-case tracking-normal text-sm opacity-70" data-i18n="hero.tag">
+        « Dos islas vecinas. Dos visiones del lujo. Una sola categoría. »
+      </div>
+      <div class="text-right">© 2026 Takyma</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-inner">
+    <span data-i18n="m1">400 acres vs 437 ha isla</span>
+    <span data-i18n="m2">8 casitas vs 50 Beach Houses + 8 Oasis</span>
+    <span data-i18n="m3">Cayuga Collection vs Aman</span>
+    <span data-i18n="m4">All-inclusive eco vs condominio gestionado</span>
+    <span data-i18n="m5">ADR 35.000 USD/noche · 40% sobre Islas Secas</span>
+    <span data-i18n="m1">400 acres vs 437 ha isla</span>
+    <span data-i18n="m2">8 casitas vs 50 Beach Houses + 8 Oasis</span>
+    <span data-i18n="m3">Cayuga Collection vs Aman</span>
+    <span data-i18n="m4">All-inclusive eco vs condominio gestionado</span>
+    <span data-i18n="m5">ADR 35.000 USD/noche · 40% sobre Islas Secas</span>
+  </div>
+</div>
+
+<!-- CONTEXT -->
+<section class="section-pad" style="background:var(--cream);">
+  <div class="max-w-6xl mx-auto reveal">
+    <div class="mb-14">
+      <div class="eyebrow mb-4" data-i18n="ctx.eyebrow">El contexto</div>
+      <div class="rule mb-6"></div>
+      <h2 class="display text-4xl md:text-6xl leading-[1.05] mb-10" style="color:var(--forest);">
+        <span data-i18n="ctx.h1">Dos islas,</span>
+        <em class="italic" style="color:var(--bronze);" data-i18n="ctx.h2">un mismo golfo.</em>
+      </h2>
+      <div class="grid md:grid-cols-2 gap-10 text-base leading-relaxed" style="color:var(--charcoal);">
+        <p data-i18n="ctx.p1">
+          <strong>Isla Palenque</strong> es el eco-resort vecino de La Porcada en el Golfo de Chiriquí. 400 acres de isla privada, 8 casitas beachfront de barefoot luxury, una villa estate para 14 huéspedes, 7 playas escondidas y bosque primario. Operado por Cayuga Collection, referente del eco-lujo centroamericano. Modelo all-inclusive con traslados en barco, comidas locales y actividades guiadas. La huella ecológica es la bandera; la escala, íntima.
+        </p>
+        <p data-i18n="ctx.p2">
+          <strong>La Porcada</strong> es la isla vecina. 437 ha en el mismo Golfo de Chiriquí, donde solo el 5,14% se desarrolla. Operador único Aman, dos productos firmados por Denniston: 50 Beach Houses a USD 25M y 8 Oasis por encargo desde USD 200M. Membresía selectiva 30.000 → 500 → 50, vida nocturna con casino, hípica, ganadería Brahman propia, manantial, huerta, hospital y planta privada. La Porcada toma la isla de Palenque y la multiplica por diez.
+        </p>
+      </div>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric-cell">
+        <div class="metric-num">8<em>casitas</em> <span style="font-size:1rem; color:var(--stone);">/ 50+8</span></div>
+        <div class="metric-label" data-i18n="k1">Isla Palenque · La Porcada Beach Houses + Oasis</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">400<em>ac</em> <span style="font-size:1rem; color:var(--stone);">/ 437<em style="color:var(--bronze);">ha</em></span></div>
+        <div class="metric-label" data-i18n="k2">Isla Palenque · La Porcada</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">Cayuga<em>vs</em> Aman</div>
+        <div class="metric-label" data-i18n="k3">Operador eco-resort vs operador premium mundial</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">+40<em>%</em></div>
+        <div class="metric-label" data-i18n="k4">ADR La Porcada sobre Islas Secas · vecino regional</div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <div class="note-kicker" data-i18n="note.k">Nota aclaratoria · activo diferencial</div>
+      <p data-i18n="note.b">
+        La Porcada contará además con 50 villas sobre el mar — posible mitad sumergida — un producto sin comparable en Isla Palenque ni en ningún resort del Pacífico americano. Las over-water villas no existen hoy en el Golfo de Chiriquí.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE COMPARISON -->
+<section class="section-pad" style="background:var(--cream-warm);">
+  <div class="max-w-6xl mx-auto reveal">
+
+    <div class="mb-12">
+      <div class="eyebrow mb-4" data-i18n="pr.eyebrow">Precios · estancia y residencia</div>
+      <div class="rule mb-6"></div>
+      <h2 class="display text-4xl md:text-6xl leading-[1.05] mb-6" style="color:var(--forest);">
+        <span data-i18n="pr.h1">El vecino eco-lodge</span>
+        <em class="italic" style="color:var(--bronze);" data-i18n="pr.h2">frente a la isla premium.</em>
+      </h2>
+      <p class="serif text-lg max-w-3xl" style="color:var(--charcoal);" data-i18n="pr.lead">
+        Isla Palenque opera en modelo all-inclusive con tarifa dinámica, sin venta de residencias. La Porcada entra con Beach Houses a USD 25M en condominio gestionado por Aman y Oasis por encargo desde USD 200M. ADR estimado USD 35.000/noche, un 40% por encima de Islas Secas. El vecino eco-lodge compite en escala íntima; La Porcada compite en escala patrimonial.
+      </p>
+    </div>
+
+    <div class="vs-block">
+      <div class="vs-side careyes">
+        <div class="vs-label" data-i18n="pr.cy.label">Isla Palenque · all-inclusive</div>
+        <div class="vs-num">500–1.500<em>USD/night</em></div>
+        <div class="vs-desc" data-i18n="pr.cy.desc">
+          8 beachfront casitas, tarifa dinámica por temporada. Incluye comidas, bebidas no alcohólicas, traslados en barco, tours y actividades. Villa Estate (14 pax) tarifa bajo petición. Sin venta de residencias: solo hospedaje.
+        </div>
+      </div>
+      <div class="vs-divider"><span data-i18n="pr.vs">vs</span></div>
+      <div class="vs-side porcada">
+        <div class="vs-label" data-i18n="pr.po.label">La Porcada · Beach Houses</div>
+        <div class="vs-num">25<em>M USD</em></div>
+        <div class="vs-desc" data-i18n="pr.po.desc">
+          50 Beach Houses · 1.000 m² parcela · 500 m² construcción · Denniston · piscina infinita · techos ajardinados · solar + agua propia. Condominio gestionado por Aman, propietario 45 días/año. Membresía 30.000 → 500 → 50.
+        </div>
+      </div>
+    </div>
+
+    <div class="vs-block">
+      <div class="vs-side careyes">
+        <div class="vs-label" data-i18n="pr.cy2.label">Isla Palenque · Villa Estate</div>
+        <div class="vs-num">~3.000<em>USD/night</em></div>
+        <div class="vs-desc" data-i18n="pr.cy2.desc">
+          Villa Estate para 14 huéspedes, tarifa bajo petición, estimada USD 3.000/noche all-inclusive. Es la unidad más premium de la isla. Sin régimen de propiedad, solo alquiler.
+        </div>
+      </div>
+      <div class="vs-divider"><span data-i18n="pr.vs">vs</span></div>
+      <div class="vs-side porcada">
+        <div class="vs-label" data-i18n="pr.po2.label">La Porcada · ADR Beach Houses</div>
+        <div class="vs-num">35.000<em>USD/night</em></div>
+        <div class="vs-desc" data-i18n="pr.po2.desc">
+          ADR estimado USD 35.000/noche — un 40% por encima de Islas Secas, competencia directa en Panamá. Beach Houses en condominio gestionado por Aman. Oasis desde USD 200M fuera de cualquier régimen de alquiler: posesión pura.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DETAILED TABLE -->
+<section class="section-pad" style="background:var(--cream);">
+  <div class="max-w-6xl mx-auto reveal">
+
+    <div class="mb-12">
+      <div class="eyebrow mb-4" data-i18n="tb.eyebrow">Matriz comparativa · 12 criterios</div>
+      <div class="rule mb-6"></div>
+      <h2 class="display text-4xl md:text-6xl leading-[1.05] mb-6" style="color:var(--forest);">
+        <span data-i18n="tb.h1">Donde se gana,</span>
+        <em class="italic" style="color:var(--bronze);" data-i18n="tb.h2">donde se escala.</em>
+      </h2>
+    </div>
+
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th data-i18n="tb.c1">Criterio</th>
+            <th class="careyes-h" data-i18n="tb.c2">Isla Palenque</th>
+            <th class="porcada-h" data-i18n="tb.c3">La Porcada</th>
+            <th data-i18n="tb.c4">Veredicto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="criterio" data-i18n="tb.r1.c">Superficie isla<small>hectáreas</small></td>
+            <td class="careyes" data-i18n="tb.r1.cy">400 acres · ~162 ha</td>
+            <td class="porcada" data-i18n="tb.r1.po"><strong>437 ha</strong> · ~1.080 acres</td>
+            <td><span class="verdict-dot porcada-wins"></span><span data-i18n="tb.r1.v">La Porcada lidera</span></td>
+          </tr>
+          <tr>
+            <td class="criterio" data-i18n="tb.r2.c">Unidades<small>número total</small></td>
+            <td class="careyes" data-i18n="tb.r2.cy">8 casitas + 1 villa estate</td>
+            <td class="porcada" data-i18n="tb.r2.po"><strong>50 Beach Houses + 8 Oasis + 100 suites</strong></td>
+            <td><span class="verdict-dot porcada-wins"></span><span data-i18n="tb.r2.v">La Porcada lidera</span></td>
+          </tr>
+          <tr>
+            <td class="criterio" data-i18n="tb.r3.c">Operador<small>marca y exclusividad</small></td>
+            <td class="careyes" data-i18n="tb.r3.cy">Cayuga Collection · eco-lodge regional</td>
+            <td class="porcada" data-i18n="tb.r3.po"><strong>Aman</strong> · 34 propiedades mundo</td>
+            <td><span class="verdict-dot porcada-wins"></span><span data-i18n="tb.r3.v">La Porcada lidera</span></td>
+          </tr>
+          <tr>
+            <td class="criterio" data-i18n="tb.r4.c">Propiedad<small>venta de residencias</small></td>
+            <td class="careyes" data-i18n="tb.r4.cy">No · solo hospedaje all-inclusive</td>
+            <td class="porcada" data-i18n="tb.r4.po"><strong>Beach Houses USD 25M</strong> · Oasis USD 200M+</td>
+            <td><span class="verdict-dot porcada-wins"></span><span data-i18n="tb.r4.v">La Porcada lidera</span></td>
+          </tr>
+          <tr>
+            <td class="criterio" data-i18n="tb.r5.c">ADR<small>USD/noche premium</small></td>
+            <td class="careyes" data-i18n="tb.r5.cy">USD 500–3.000/noche</td>
+            <td class="porcada" data-i18n="tb.r5.po"><strong>USD 35.000/noche</strong> · +40% sobre Islas Secas</td>
+            <td><span class="verdict-dot porcada-wins"></span><span data-i18n="tb.r5.v">La Porcada lidera</span></td>
+          </tr>
+          <tr>
+            <td class="criterio" data-i18n="tb.r6.c">Diseño arquitectónico<small>firma y autoría</small></td>
+            <td class="careyes" data-i18n="tb.r6.cy">Casitas barefoot · arquitectura local</td>
+            <td class="porcada" data-i18n="tb.r6.po"><strong>Denniston Architects</strong> en ambos productos</td>
+            <td><span class="verdict-dot porcada-wins"></span><span data-i18n="tb.r6.v">La Porcada lidera</span></td>
+          </tr>
+          <tr>
+            <td class="criterio" data-i18n="tb.r7.c">Membresía selectiva<small>filtro comprador</small></td>
+            <td class="careyes" data-i18n="tb.r7.cy">Acceso libre por reserva · sin filtro</td>
+            <td class="porcada" data-i18n="tb.r7.po"><strong>30.000 → 500 → 50</strong> · 1,67% finalistas</td>
+            <td><span class="verdict-dot porcada-wins"></span><span data-i18n="tb.r7.v">La Porcada lidera</span></td>
+          </tr>
+          <tr>
+            <td class="criterio" data-i18n="tb.r8.c">Sistema constructivo<small>materiales</small></td>
+            <td class="careyes" data-i18n="tb.r8.cy">Construcción local · barefoot luxury</td>
+            <td class="porcada" data-i18n="tb.r8.po"><strong>CLT + acero galvanizado + epoxy</strong> · carbono negativo</td>
+            <td><span class="verdict-dot porcada-wins"></span><span data-i18n="tb.r8.v">La Porcada lidera</span></td>
+          </tr>
+          <tr>
+            <td class="criterio" data-i18n="tb.r9.c">Vida nocturna<small>casino y espectáculos</small></td>
+            <td class="careyes" data-i18n="tb.r9.cy">Cenas y fogata · sin casino ni espectáculos</td>
+            <td class="porcada" data-i18n="tb.r9.po"><strong>Casino privado + espectáculos</strong> en isla</td>
+            <td><span class="verdict-dot porcada-wins"></span><span data-i18n="tb.r9.v">La Porcada lidera</span></td>
+          </tr>
+          <tr>
+            <td class="criterio" data-i18n="tb.r10.c">Autosuficiencia<small>energía, agua, comida</small></td>
+            <td class="careyes" data-i18n="tb.r10.cy">Eco-resort · huerta local · energía parcial</td>
+            <td class="porcada" data-i18n="tb.r10.po"><strong>Planta propia + manantial + Brahman + huerta</strong></td>
+            <td><span class="verdict-dot porcada-wins"></span><span data-i18n="tb.r10.v">La Porcada lidera</span></td>
+          </tr>
+          <tr>
+            <td class="criterio" data-i18n="tb.r11.c">Hospital &amp; salud<small>atención en isla</small></td>
+            <td class="careyes" data-i18n="tb.r11.cy">Botiquín · derivación a David o Boca Chica</td>
+            <td class="porcada" data-i18n="tb.r11.po"><strong>Hospital privado en isla</strong> · 24/7</td>
+            <td><span class="verdict-dot porcada-wins"></span><span data-i18n="tb.r11.v">La Porcada lidera</span></td>
+          </tr>
+          <tr>
+            <td class="criterio" data-i18n="tb.r12.c">Marina &amp; náutica<small>capacidad yates</small></td>
+            <td class="careyes" data-i18n="tb.r12.cy">Muelle de embarque · sin marina deportiva</td>
+            <td class="porcada" data-i18n="tb.r12.po"><strong>24 dársenas</strong> · yates 40–80 m · no-wake</td>
+            <td><span class="verdict-dot porcada-wins"></span><span data-i18n="tb.r12.v">La Porcada lidera</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-6 text-[11px] serif italic" style="color:var(--stone);" data-i18n="tb.note">
+      Fuentes: islapalenque.com · tripadvisor.com · booking.com · businessinsider.com · afar.com · datos internos La Porcada 2026. Cifras indicativas de mercado.
+    </div>
+
+  </div>
+</section>
+
+<!-- VERDICT BREAKDOWN -->
+<section class="section-pad" style="background:var(--cream-warm);">
+  <div class="max-w-5xl mx-auto reveal">
+
+    <div class="mb-12 text-center">
+      <div class="eyebrow mb-4" data-i18n="vd.eyebrow">El veredicto</div>
+      <div class="rule mx-auto mb-6"></div>
+      <h2 class="display text-4xl md:text-6xl leading-[1.05]" style="color:var(--forest);">
+        <span data-i18n="vd.h1">Doce victorias,</span>
+        <em class="italic" style="color:var(--bronze);" data-i18n="vd.h2">el vecino se rinde.</em>
+      </h2>
+    </div>
+
+    <div class="verdict-row">
+      <div class="verdict-num">01</div>
+      <div class="verdict-criterio" data-i18n="vd.r1.c">Superficie</div>
+      <div class="verdict-arg" data-i18n="vd.r1.a">Isla Palenque son 400 acres (~162 ha). La Porcada son 437 ha (~1.080 acres). La Porcada es 2,7× más grande que su vecino. Más territorio, más bosque protegido, más privacidad.</div>
+      <div class="verdict-tag porcada-wins" data-i18n="vd.tag.pw">La Porcada</div>
+    </div>
+    <div class="verdict-row">
+      <div class="verdict-num">02</div>
+      <div class="verdict-criterio" data-i18n="vd.r2.c">Unidades</div>
+      <div class="verdict-arg" data-i18n="vd.r2.a">Isla Palenque tiene 8 casitas + 1 villa estate. La Porcada tiene 50 Beach Houses + 8 Oasis + 100 suites hotel boutique. La escala operativa multiplica por diez al vecino.</div>
+      <div class="verdict-tag porcada-wins" data-i18n="vd.tag.pw">La Porcada</div>
+    </div>
+    <div class="verdict-row">
+      <div class="verdict-num">03</div>
+      <div class="verdict-criterio" data-i18n="vd.r3.c">Operador</div>
+      <div class="verdict-arg" data-i18n="vd.r3.a">Isla Palenque opera bajo Cayuga Collection, marca regional de eco-lodge. La Porcada opera bajo Aman, marca mundial premium con 34 propiedades. Diferencia de categoría operativa.</div>
+      <div class="verdict-tag porcada-wins" data-i18n="vd.tag.pw">La Porcada</div>
+    </div>
+    <div class="verdict-row">
+      <div class="verdict-num">04</div>
+      <div class="verdict-criterio" data-i18n="vd.r4.c">Propiedad</div>
+      <div class="verdict-arg" data-i18n="vd.r4.a">Isla Palenque solo vende hospedaje, no residencias. La Porcada vende Beach Houses a USD 25M y Oasis por encargo desde USD 200M. Modelo patrimonial frente a modelo hotelero puro.</div>
+      <div class="verdict-tag porcada-wins" data-i18n="vd.tag.pw">La Porcada</div>
+    </div>
+    <div class="verdict-row">
+      <div class="verdict-num">05</div>
+      <div class="verdict-criterio" data-i18n="vd.r5.c">ADR</div>
+      <div class="verdict-arg" data-i18n="vd.r5.a">Isla Palenque ADR USD 500–3.000/noche. La Porcada ADR estimado USD 35.000/noche — 40% por encima de Islas Secas, competencia regional directa. La diferencia de tarifa refleja la diferencia de producto.</div>
+      <div class="verdict-tag porcada-wins" data-i18n="vd.tag.pw">La Porcada</div>
+    </div>
+    <div class="verdict-row">
+      <div class="verdict-num">06</div>
+      <div class="verdict-criterio" data-i18n="vd.r6.c">Diseño arquitectónico</div>
+      <div class="verdict-arg" data-i18n="vd.r6.a">Isla Palenque construye casitas barefoot con arquitectura local. La Porcada firma ambos productos con Denniston Architects. Coherencia de autoría que el UHNWI reconoce y paga.</div>
+      <div class="verdict-tag porcada-wins" data-i18n="vd.tag.pw">La Porcada</div>
+    </div>
+    <div class="verdict-row">
+      <div class="verdict-num">07</div>
+      <div class="verdict-criterio" data-i18n="vd.r7.c">Membresía selectiva</div>
+      <div class="verdict-arg" data-i18n="vd.r7.a">Isla Palenque acepta reservas libres sin filtro. La Porcada impone embudo 30.000 → 500 → 50 (1,67%). La escasez estadística sostiene el precio y proyecta revalorización.</div>
+      <div class="verdict-tag porcada-wins" data-i18n="vd.tag.pw">La Porcada</div>
+    </div>
+    <div class="verdict-row">
+      <div class="verdict-num">08</div>
+      <div class="verdict-criterio" data-i18n="vd.r8.c">Sistema constructivo</div>
+      <div class="verdict-arg" data-i18n="vd.r8.a">Isla Palenque: construcción local barefoot. La Porcada: CLT carbono negativo, acero galvanizado, epoxy marino, techos ajardinados, energía solar. El cuerpo técnico del 2026 frente al barefoot del 2010.</div>
+      <div class="verdict-tag porcada-wins" data-i18n="vd.tag.pw">La Porcada</div>
+    </div>
+    <div class="verdict-row">
+      <div class="verdict-num">09</div>
+      <div class="verdict-criterio" data-i18n="vd.r9.c">Vida nocturna</div>
+      <div class="verdict-arg" data-i18n="vd.r9.a">Isla Palenque ofrece cenas y fogata. La Porcada tiene casino privado y espectáculos en vivo. Para el huésped UHNWI que busca discreción de día y opción de noche, La Porcada gana.</div>
+      <div class="verdict-tag porcada-wins" data-i18n="vd.tag.pw">La Porcada</div>
+    </div>
+    <div class="verdict-row">
+      <div class="verdict-num">10</div>
+      <div class="verdict-criterio" data-i18n="vd.r10.c">Autosuficiencia</div>
+      <div class="verdict-arg" data-i18n="vd.r10.a">Isla Palenque es eco-resort con huerta local y energía parcial. La Porcada produce su propia energía, agua de manantial, carne Brahman y huerta. Autonomía total, no parcial.</div>
+      <div class="verdict-tag porcada-wins" data-i18n="vd.tag.pw">La Porcada</div>
+    </div>
+    <div class="verdict-row">
+      <div class="verdict-num">11</div>
+      <div class="verdict-criterio" data-i18n="vd.r11.c">Hospital y salud</div>
+      <div class="verdict-arg" data-i18n="vd.r11.a">Isla Palenque tiene botiquín y deriva emergencias a David o Boca Chica. La Porcada tiene hospital privado en la isla, 24/7. La diferencia entre una urgencia atendida y una urgencia derivada.</div>
+      <div class="verdict-tag porcada-wins" data-i18n="vd.tag.pw">La Porcada</div>
+    </div>
+    <div class="verdict-row">
+      <div class="verdict-num">12</div>
+      <div class="verdict-criterio" data-i18n="vd.r12.c">Marina y náutica</div>
+      <div class="verdict-arg" data-i18n="vd.r12.a">Isla Palenque tiene muelle de embarque para traslados, sin marina deportiva. La Porcada ofrece 24 dársenas para yates de 40–80 m, water taxis eléctricos, zonas no-wake. Marina de escala superior.</div>
+      <div class="verdict-tag porcada-wins" data-i18n="vd.tag.pw">La Porcada</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- THE THESIS -->
+<section class="section-pad" style="background:var(--forest); color:var(--cream);">
+  <div class="max-w-4xl mx-auto reveal">
+    <div class="eyebrow mb-6" style="color:var(--bronze-light);" data-i18n="th.eyebrow">La tesis</div>
+    <div class="rule mb-6"></div>
+    <h2 class="display text-4xl md:text-7xl leading-[1.05] mb-10">
+      <span data-i18n="th.h1">Dos islas vecinas.</span><br/>
+      <em class="italic" style="color:var(--bronze-light);" data-i18n="th.h2">Dos visiones del lujo.</em>
+    </h2>
+    <div class="space-y-6 text-base leading-relaxed opacity-90">
+      <p data-i18n="th.p1">
+        Isla Palenque seguirá siendo el eco-resort vecino de referencia en el Golfo de Chiriquí. Su escala íntima, su apuesta eco, su barefoot luxury — todo eso tiene valor y merece respeto. Pero cuando un inversor global compara dónde colocar USD 25M en una Beach House o USD 200M en un Oasis, La Porcada gana en doce de doce criterios técnicos.
+      </p>
+      <p data-i18n="th.p2">
+        Gana en escala porque 437 ha superan a 162. Gana en unidades porque 158 superan a 9. Gana en operador porque Aman supera a Cayuga. Gana en propiedad porque vende residencias, no solo hospedaje. Gana en ADR porque USD 35.000 supera a USD 3.000. Gana en arquitectura porque Denniston firma ambos productos. Gana en membresía, en construcción, en vida nocturna, en autosuficiencia, en hospital y en marina. Doce de doce.
+      </p>
+      <p data-i18n="th.p3">
+        Isla Palenque es barefoot luxury regional. La Porcada es patrimonio premium mundial. No compiten en la misma categoría: compiten en la misma geografía. Y ahí, en el Golfo de Chiriquí, La Porcada es el vecino que cambia la categoría del vecindario.
+      </p>
+    </div>
+    <div class="mt-12 p-6" style="border:1px dashed rgba(201,168,120,0.4);">
+      <div class="text-[10px] tracking-[0.3em] uppercase mb-3" style="color:var(--bronze-light);" data-i18n="th.kicker">Conclusión · cierre del comparativo regional</div>
+      <p class="serif italic text-xl md:text-2xl" style="color:var(--cream);" data-i18n="th.close">
+        « La Porcada no es el próximo Isla Palenque. Es lo que Isla Palenque habría sido si se hubiera construido a escala patrimonial, con Aman, con Denniston, con CLT, con casino, con hospital propio y con 50 villas sobre el mar. El vecino que cambia la categoría del Golfo de Chiriquí. »
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-12 pb-10" style="border-bottom:1px solid rgba(244,237,224,0.15);">
+      <div>
+        <img src="images/LOGO.png" alt="Takyma" class="logo-mark mb-4" />
+        <div class="footer-logo" style="color:var(--cream);">Takyma</div>
+        <div class="text-[10px] tracking-[0.35em] uppercase opacity-60 mt-2" data-i18n="foot.tag">Investment Pioneer</div>
+      </div>
+      <div class="text-right text-[11px] tracking-[0.25em] uppercase opacity-70 leading-relaxed">
+        <div data-i18n="foot.l1">Isla Porcada · Chiriquí · Panamá</div>
+        <div class="mt-3 opacity-60">Beach Houses · Oasis · Aman</div>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] tracking-[0.2em] uppercase opacity-60">
+      <div>© 2026 EcoResort La Porcada · by Takyma Investment Pioneer</div>
+      <div class="serif italic normal-case tracking-normal text-sm opacity-80" data-i18n="foot.motto">
+        « La naturaleza no se domestica, se reverencia. »
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const translations = {
+  es: {
+    "hero.eyebrow":"Comparativa de mercado · Capítulo 27 · Competencia vecina",
+    "hero.h1":"La Porcada",
+    "hero.h2":"Isla Palenque",
+    "hero.sub":"El eco-resort vecino del Golfo de Chiriquí — 8 casitas en 400 acres — frente a La Porcada, isla de 437 ha con Aman, Denniston y dos productos premium. El comparativo del vecino directo.",
+    "hero.loc":"Golfo de Chiriquí · Panamá · 2026",
+    "hero.tag":"« Dos islas vecinas. Dos visiones del lujo. Una sola categoría. »",
+    "m1":"400 acres vs 437 ha isla",
+    "m2":"8 casitas vs 50 Beach Houses + 8 Oasis",
+    "m3":"Cayuga Collection vs Aman",
+    "m4":"All-inclusive eco vs condominio gestionado",
+    "m5":"ADR 35.000 USD/noche · 40% sobre Islas Secas",
+    "ctx.eyebrow":"El contexto",
+    "ctx.h1":"Dos islas,",
+    "ctx.h2":"un mismo golfo.",
+    "ctx.p1":"<strong>Isla Palenque</strong> es el eco-resort vecino de La Porcada en el Golfo de Chiriquí. 400 acres de isla privada, 8 casitas beachfront de barefoot luxury, una villa estate para 14 huéspedes, 7 playas escondidas y bosque primario. Operado por Cayuga Collection, referente del eco-lujo centroamericano. Modelo all-inclusive con traslados en barco, comidas locales y actividades guiadas. La huella ecológica es la bandera; la escala, íntima.",
+    "ctx.p2":"<strong>La Porcada</strong> es la isla vecina. 437 ha en el mismo Golfo de Chiriquí, donde solo el 5,14% se desarrolla. Operador único Aman, dos productos firmados por Denniston: 50 Beach Houses a USD 25M y 8 Oasis por encargo desde USD 200M. Membresía selectiva 30.000 → 500 → 50, vida nocturna con casino, hípica, ganadería Brahman propia, manantial, huerta, hospital y planta privada. La Porcada toma la isla de Palenque y la multiplica por diez.",
+    "k1":"Isla Palenque · La Porcada Beach Houses + Oasis",
+    "k2":"Isla Palenque · La Porcada",
+    "k3":"Operador eco-resort vs operador premium mundial",
+    "k4":"ADR La Porcada sobre Islas Secas · vecino regional",
+    "note.k":"Nota aclaratoria · activo diferencial",
+    "note.b":"La Porcada contará además con 50 villas sobre el mar — posible mitad sumergida — un producto sin comparable en Isla Palenque ni en ningún resort del Pacífico americano. Las over-water villas no existen hoy en el Golfo de Chiriquí.",
+    "pr.eyebrow":"Precios · estancia y residencia",
+    "pr.h1":"El vecino eco-lodge",
+    "pr.h2":"frente a la isla premium.",
+    "pr.lead":"Isla Palenque opera en modelo all-inclusive con tarifa dinámica, sin venta de residencias. La Porcada entra con Beach Houses a USD 25M en condominio gestionado por Aman y Oasis por encargo desde USD 200M. ADR estimado USD 35.000/noche, un 40% por encima de Islas Secas. El vecino eco-lodge compite en escala íntima; La Porcada compite en escala patrimonial.",
+    "pr.cy.label":"Isla Palenque · all-inclusive",
+    "pr.cy.desc":"8 beachfront casitas, tarifa dinámica por temporada. Incluye comidas, bebidas no alcohólicas, traslados en barco, tours y actividades. Villa Estate (14 pax) tarifa bajo petición. Sin venta de residencias: solo hospedaje.",
+    "pr.vs":"vs",
+    "pr.po.label":"La Porcada · Beach Houses",
+    "pr.po.desc":"50 Beach Houses · 1.000 m² parcela · 500 m² construcción · Denniston · piscina infinita · techos ajardinados · solar + agua propia. Condominio gestionado por Aman, propietario 45 días/año. Membresía 30.000 → 500 → 50.",
+    "pr.cy2.label":"Isla Palenque · Villa Estate",
+    "pr.cy2.desc":"Villa Estate para 14 huéspedes, tarifa bajo petición, estimada USD 3.000/noche all-inclusive. Es la unidad más premium de la isla. Sin régimen de propiedad, solo alquiler.",
+    "pr.po2.label":"La Porcada · ADR Beach Houses",
+    "pr.po2.desc":"ADR estimado USD 35.000/noche — un 40% por encima de Islas Secas, competencia directa en Panamá. Beach Houses en condominio gestionado por Aman. Oasis desde USD 200M fuera de cualquier régimen de alquiler: posesión pura.",
+    "tb.eyebrow":"Matriz comparativa · 12 criterios",
+    "tb.h1":"Donde se gana,",
+    "tb.h2":"donde se escala.",
+    "tb.c1":"Criterio","tb.c2":"Isla Palenque","tb.c3":"La Porcada","tb.c4":"Veredicto",
+    "tb.r1.c":"Superficie isla<small>hectáreas</small>","tb.r1.cy":"400 acres · ~162 ha","tb.r1.po":"<strong>437 ha</strong> · ~1.080 acres","tb.r1.v":"La Porcada lidera",
+    "tb.r2.c":"Unidades<small>número total</small>","tb.r2.cy":"8 casitas + 1 villa estate","tb.r2.po":"<strong>50 Beach Houses + 8 Oasis + 100 suites</strong>","tb.r2.v":"La Porcada lidera",
+    "tb.r3.c":"Operador<small>marca y exclusividad</small>","tb.r3.cy":"Cayuga Collection · eco-lodge regional","tb.r3.po":"<strong>Aman</strong> · 34 propiedades mundo","tb.r3.v":"La Porcada lidera",
+    "tb.r4.c":"Propiedad<small>venta de residencias</small>","tb.r4.cy":"No · solo hospedaje all-inclusive","tb.r4.po":"<strong>Beach Houses USD 25M</strong> · Oasis USD 200M+","tb.r4.v":"La Porcada lidera",
+    "tb.r5.c":"ADR<small>USD/noche premium</small>","tb.r5.cy":"USD 500–3.000/noche","tb.r5.po":"<strong>USD 35.000/noche</strong> · +40% sobre Islas Secas","tb.r5.v":"La Porcada lidera",
+    "tb.r6.c":"Diseño arquitectónico<small>firma y autoría</small>","tb.r6.cy":"Casitas barefoot · arquitectura local","tb.r6.po":"<strong>Denniston Architects</strong> en ambos productos","tb.r6.v":"La Porcada lidera",
+    "tb.r7.c":"Membresía selectiva<small>filtro comprador</small>","tb.r7.cy":"Acceso libre por reserva · sin filtro","tb.r7.po":"<strong>30.000 → 500 → 50</strong> · 1,67% finalistas","tb.r7.v":"La Porcada lidera",
+    "tb.r8.c":"Sistema constructivo<small>materiales</small>","tb.r8.cy":"Construcción local · barefoot luxury","tb.r8.po":"<strong>CLT + acero galvanizado + epoxy</strong> · carbono negativo","tb.r8.v":"La Porcada lidera",
+    "tb.r9.c":"Vida nocturna<small>casino y espectáculos</small>","tb.r9.cy":"Cenas y fogata · sin casino ni espectáculos","tb.r9.po":"<strong>Casino privado + espectáculos</strong> en isla","tb.r9.v":"La Porcada lidera",
+    "tb.r10.c":"Autosuficiencia<small>energía, agua, comida</small>","tb.r10.cy":"Eco-resort · huerta local · energía parcial","tb.r10.po":"<strong>Planta propia + manantial + Brahman + huerta</strong>","tb.r10.v":"La Porcada lidera",
+    "tb.r11.c":"Hospital & salud<small>atención en isla</small>","tb.r11.cy":"Botiquín · derivación a David o Boca Chica","tb.r11.po":"<strong>Hospital privado en isla</strong> · 24/7","tb.r11.v":"La Porcada lidera",
+    "tb.r12.c":"Marina & náutica<small>capacidad yates</small>","tb.r12.cy":"Muelle de embarque · sin marina deportiva","tb.r12.po":"<strong>24 dársenas</strong> · yates 40–80 m · no-wake","tb.r12.v":"La Porcada lidera",
+    "tb.note":"Fuentes: islapalenque.com · tripadvisor.com · booking.com · businessinsider.com · afar.com · datos internos La Porcada 2026. Cifras indicativas de mercado.",
+    "vd.eyebrow":"El veredicto",
+    "vd.h1":"Doce victorias,",
+    "vd.h2":"el vecino se rinde.",
+    "vd.r1.c":"Superficie","vd.r1.a":"Isla Palenque son 400 acres (~162 ha). La Porcada son 437 ha (~1.080 acres). La Porcada es 2,7× más grande que su vecino. Más territorio, más bosque protegido, más privacidad.","vd.tag.pw":"La Porcada",
+    "vd.r2.c":"Unidades","vd.r2.a":"Isla Palenque tiene 8 casitas + 1 villa estate. La Porcada tiene 50 Beach Houses + 8 Oasis + 100 suites hotel boutique. La escala operativa multiplica por diez al vecino.","vd.tag.pw":"La Porcada",
+    "vd.r3.c":"Operador","vd.r3.a":"Isla Palenque opera bajo Cayuga Collection, marca regional de eco-lodge. La Porcada opera bajo Aman, marca mundial premium con 34 propiedades. Diferencia de categoría operativa.","vd.tag.pw":"La Porcada",
+    "vd.r4.c":"Propiedad","vd.r4.a":"Isla Palenque solo vende hospedaje, no residencias. La Porcada vende Beach Houses a USD 25M y Oasis por encargo desde USD 200M. Modelo patrimonial frente a modelo hotelero puro.","vd.tag.pw":"La Porcada",
+    "vd.r5.c":"ADR","vd.r5.a":"Isla Palenque ADR USD 500–3.000/noche. La Porcada ADR estimado USD 35.000/noche — 40% por encima de Islas Secas, competencia regional directa. La diferencia de tarifa refleja la diferencia de producto.","vd.tag.pw":"La Porcada",
+    "vd.r6.c":"Diseño arquitectónico","vd.r6.a":"Isla Palenque construye casitas barefoot con arquitectura local. La Porcada firma ambos productos con Denniston Architects. Coherencia de autoría que el UHNWI reconoce y paga.","vd.tag.pw":"La Porcada",
+    "vd.r7.c":"Membresía selectiva","vd.r7.a":"Isla Palenque acepta reservas libres sin filtro. La Porcada impone embudo 30.000 → 500 → 50 (1,67%). La escasez estadística sostiene el precio y proyecta revalorización.","vd.tag.pw":"La Porcada",
+    "vd.r8.c":"Sistema constructivo","vd.r8.a":"Isla Palenque: construcción local barefoot. La Porcada: CLT carbono negativo, acero galvanizado, epoxy marino, techos ajardinados, energía solar. El cuerpo técnico del 2026 frente al barefoot del 2010.","vd.tag.pw":"La Porcada",
+    "vd.r9.c":"Vida nocturna","vd.r9.a":"Isla Palenque ofrece cenas y fogata. La Porcada tiene casino privado y espectáculos en vivo. Para el huésped UHNWI que busca discreción de día y opción de noche, La Porcada gana.","vd.tag.pw":"La Porcada",
+    "vd.r10.c":"Autosuficiencia","vd.r10.a":"Isla Palenque es eco-resort con huerta local y energía parcial. La Porcada produce su propia energía, agua de manantial, carne Brahman y huerta. Autonomía total, no parcial.","vd.tag.pw":"La Porcada",
+    "vd.r11.c":"Hospital y salud","vd.r11.a":"Isla Palenque tiene botiquín y deriva emergencias a David o Boca Chica. La Porcada tiene hospital privado en la isla, 24/7. La diferencia entre una urgencia atendida y una urgencia derivada.","vd.tag.pw":"La Porcada",
+    "vd.r12.c":"Marina y náutica","vd.r12.a":"Isla Palenque tiene muelle de embarque para traslados, sin marina deportiva. La Porcada ofrece 24 dársenas para yates de 40–80 m, water taxis eléctricos, zonas no-wake. Marina de escala superior.","vd.tag.pw":"La Porcada",
+    "th.eyebrow":"La tesis",
+    "th.h1":"Dos islas vecinas.",
+    "th.h2":"Dos visiones del lujo.",
+    "th.p1":"Isla Palenque seguirá siendo el eco-resort vecino de referencia en el Golfo de Chiriquí. Su escala íntima, su apuesta eco, su barefoot luxury — todo eso tiene valor y merece respeto. Pero cuando un inversor global compara dónde colocar USD 25M en una Beach House o USD 200M en un Oasis, La Porcada gana en doce de doce criterios técnicos.",
+    "th.p2":"Gana en escala porque 437 ha superan a 162. Gana en unidades porque 158 superan a 9. Gana en operador porque Aman supera a Cayuga. Gana en propiedad porque vende residencias, no solo hospedaje. Gana en ADR porque USD 35.000 supera a USD 3.000. Gana en arquitectura porque Denniston firma ambos productos. Gana en membresía, en construcción, en vida nocturna, en autosuficiencia, en hospital y en marina. Doce de doce.",
+    "th.p3":"Isla Palenque es barefoot luxury regional. La Porcada es patrimonio premium mundial. No compiten en la misma categoría: compiten en la misma geografía. Y ahí, en el Golfo de Chiriquí, La Porcada es el vecino que cambia la categoría del vecindario.",
+    "th.kicker":"Conclusión · cierre del comparativo regional",
+    "th.close":"« La Porcada no es el próximo Isla Palenque. Es lo que Isla Palenque habría sido si se hubiera construido a escala patrimonial, con Aman, con Denniston, con CLT, con casino, con hospital propio y con 50 villas sobre el mar. El vecino que cambia la categoría del Golfo de Chiriquí. »",
+    "foot.tag":"Investment Pioneer",
+    "foot.l1":"Isla Porcada · Chiriquí · Panamá",
+    "foot.motto":"« La naturaleza no se domestica, se reverencia. »"
+  },
+  en: {
+    "hero.eyebrow":"Market comparison · Chapter 27 · Neighboring competition",
+    "hero.h1":"La Porcada",
+    "hero.h2":"Isla Palenque",
+    "hero.sub":"The neighboring eco-resort of the Gulf of Chiriquí — 8 casitas on 400 acres — against La Porcada, a 437-ha island with Aman, Denniston and two premium products. The direct neighbor comparison.",
+    "hero.loc":"Gulf of Chiriquí · Panama · 2026",
+    "hero.tag":"« Two neighboring islands. Two visions of luxury. One category. »",
+    "m1":"400 acres vs 437 ha island",
+    "m2":"8 casitas vs 50 Beach Houses + 8 Oasis",
+    "m3":"Cayuga Collection vs Aman",
+    "m4":"All-inclusive eco vs managed condominium",
+    "m5":"ADR 35,000 USD/night · 40% above Islas Secas",
+    "ctx.eyebrow":"The context",
+    "ctx.h1":"Two islands,",
+    "ctx.h2":"one same gulf.",
+    "ctx.p1":"<strong>Isla Palenque</strong> is the neighboring eco-resort of La Porcada in the Gulf of Chiriquí. 400 acres of private island, 8 beachfront barefoot luxury casitas, a villa estate for 14 guests, 7 hidden beaches and primary forest. Operated by Cayuga Collection, a Central American eco-luxury benchmark. All-inclusive model with boat transfers, local meals and guided activities. The ecological footprint is the flag; the scale, intimate.",
+    "ctx.p2":"<strong>La Porcada</strong> is the neighboring island. 437 ha in the same Gulf of Chiriquí, where only 5.14% is developed. Single Aman operator, two products signed by Denniston: 50 Beach Houses at USD 25M and 8 bespoke Oasis from USD 200M. Selective membership 30,000 → 500 → 50, nightlife with casino, equestrian, own Brahman cattle, spring, orchard, hospital and private plant. La Porcada takes Palenque's island and multiplies it by ten.",
+    "k1":"Isla Palenque · La Porcada Beach Houses + Oasis",
+    "k2":"Isla Palenque · La Porcada",
+    "k3":"Eco-resort operator vs world premium operator",
+    "k4":"La Porcada ADR above Islas Secas · regional neighbor",
+    "note.k":"Explanatory note · differential asset",
+    "note.b":"La Porcada will additionally feature 50 over-water villas — possibly half-submerged — a product with no comparable in Isla Palenque or any resort of the American Pacific. Over-water villas do not exist today in the Gulf of Chiriquí.",
+    "pr.eyebrow":"Prices · stay and residence",
+    "pr.h1":"The neighboring eco-lodge",
+    "pr.h2":"against the premium island.",
+    "pr.lead":"Isla Palenque operates an all-inclusive model with dynamic rates, no residence sales. La Porcada enters with USD 25M Beach Houses in Aman-managed condominium and bespoke Oasis from USD 200M. Estimated ADR USD 35,000/night, 40% above Islas Secas. The neighboring eco-lodge competes on intimate scale; La Porcada competes on patrimonial scale.",
+    "pr.cy.label":"Isla Palenque · all-inclusive",
+    "pr.cy.desc":"8 beachfront casitas, dynamic rate by season. Includes meals, non-alcoholic beverages, boat transfers, tours and activities. Villa Estate (14 pax) rate on request. No residence sales: lodging only.",
+    "pr.vs":"vs",
+    "pr.po.label":"La Porcada · Beach Houses",
+    "pr.po.desc":"50 Beach Houses · 1,000 m² plot · 500 m² construction · Denniston · infinity pool · green roofs · solar + own water. Condominium managed by Aman, owner 45 days/year. Membership 30,000 → 500 → 50.",
+    "pr.cy2.label":"Isla Palenque · Villa Estate",
+    "pr.cy2.desc":"Villa Estate for 14 guests, rate on request, estimated USD 3,000/night all-inclusive. The island's most premium unit. No property regime, rental only.",
+    "pr.po2.label":"La Porcada · Beach Houses ADR",
+    "pr.po2.desc":"Estimated ADR USD 35,000/night — 40% above Islas Secas, direct competition in Panama. Beach Houses in Aman-managed condominium. Oasis from USD 200M outside any rental regime: pure possession.",
+    "tb.eyebrow":"Comparative matrix · 12 criteria",
+    "tb.h1":"Where it wins,",
+    "tb.h2":"where it scales.",
+    "tb.c1":"Criterion","tb.c2":"Isla Palenque","tb.c3":"La Porcada","tb.c4":"Verdict",
+    "tb.r1.c":"Island surface<small>hectares</small>","tb.r1.cy":"400 acres · ~162 ha","tb.r1.po":"<strong>437 ha</strong> · ~1,080 acres","tb.r1.v":"La Porcada leads",
+    "tb.r2.c":"Units<small>total number</small>","tb.r2.cy":"8 casitas + 1 villa estate","tb.r2.po":"<strong>50 Beach Houses + 8 Oasis + 100 suites</strong>","tb.r2.v":"La Porcada leads",
+    "tb.r3.c":"Operator<small>brand and exclusivity</small>","tb.r3.cy":"Cayuga Collection · regional eco-lodge","tb.r3.po":"<strong>Aman</strong> · 34 properties worldwide","tb.r3.v":"La Porcada leads",
+    "tb.r4.c":"Ownership<small>residence sales</small>","tb.r4.cy":"No · all-inclusive lodging only","tb.r4.po":"<strong>Beach Houses USD 25M</strong> · Oasis USD 200M+","tb.r4.v":"La Porcada leads",
+    "tb.r5.c":"ADR<small>USD/night premium</small>","tb.r5.cy":"USD 500–3,000/night","tb.r5.po":"<strong>USD 35,000/night</strong> · +40% above Islas Secas","tb.r5.v":"La Porcada leads",
+    "tb.r6.c":"Architectural design<small>signature and authorship</small>","tb.r6.cy":"Barefoot casitas · local architecture","tb.r6.po":"<strong>Denniston Architects</strong> on both products","tb.r6.v":"La Porcada leads",
+    "tb.r7.c":"Selective membership<small>buyer filter</small>","tb.r7.cy":"Open access by booking · no filter","tb.r7.po":"<strong>30,000 → 500 → 50</strong> · 1.67% finalists","tb.r7.v":"La Porcada leads",
+    "tb.r8.c":"Construction system<small>materials</small>","tb.r8.cy":"Local construction · barefoot luxury","tb.r8.po":"<strong>CLT + galvanized steel + epoxy</strong> · negative carbon","tb.r8.v":"La Porcada leads",
+    "tb.r9.c":"Nightlife<small>casino and shows</small>","tb.r9.cy":"Dinners and bonfire · no casino or shows","tb.r9.po":"<strong>Private casino + shows</strong> on island","tb.r9.v":"La Porcada leads",
+    "tb.r10.c":"Self-sufficiency<small>energy, water, food</small>","tb.r10.cy":"Eco-resort · local orchard · partial energy","tb.r10.po":"<strong>Own plant + spring + Brahman + orchard</strong>","tb.r10.v":"La Porcada leads",
+    "tb.r11.c":"Hospital & health<small>island care</small>","tb.r11.cy":"First-aid kit · referral to David or Boca Chica","tb.r11.po":"<strong>Private hospital on island</strong> · 24/7","tb.r11.v":"La Porcada leads",
+    "tb.r12.c":"Marina & nautical<small>yacht capacity</small>","tb.r12.cy":"Boarding pier · no marina","tb.r12.po":"<strong>24 berths</strong> · 40–80 m yachts · no-wake","tb.r12.v":"La Porcada leads",
+    "tb.note":"Sources: islapalenque.com · tripadvisor.com · booking.com · businessinsider.com · afar.com · La Porcada internal data 2026. Indicative market figures.",
+    "vd.eyebrow":"The verdict",
+    "vd.h1":"Twelve wins,",
+    "vd.h2":"the neighbor yields.",
+    "vd.r1.c":"Surface","vd.r1.a":"Isla Palenque is 400 acres (~162 ha). La Porcada is 437 ha (~1,080 acres). La Porcada is 2.7× larger than its neighbor. More territory, more protected forest, more privacy.","vd.tag.pw":"La Porcada",
+    "vd.r2.c":"Units","vd.r2.a":"Isla Palenque has 8 casitas + 1 villa estate. La Porcada has 50 Beach Houses + 8 Oasis + 100 boutique hotel suites. Operational scale multiplies the neighbor by ten.","vd.tag.pw":"La Porcada",
+    "vd.r3.c":"Operator","vd.r3.a":"Isla Palenque operates under Cayuga Collection, a regional eco-lodge brand. La Porcada operates under Aman, a world premium brand with 34 properties. Operational category difference.","vd.tag.pw":"La Porcada",
+    "vd.r4.c":"Ownership","vd.r4.a":"Isla Palenque only sells lodging, not residences. La Porcada sells Beach Houses at USD 25M and bespoke Oasis from USD 200M. Patrimonial model against pure hotel model.","vd.tag.pw":"La Porcada",
+    "vd.r5.c":"ADR","vd.r5.a":"Isla Palenque ADR USD 500–3,000/night. La Porcada estimated ADR USD 35,000/night — 40% above Islas Secas, direct regional competition. The rate difference reflects the product difference.","vd.tag.pw":"La Porcada",
+    "vd.r6.c":"Architectural design","vd.r6.a":"Isla Palenque builds barefoot casitas with local architecture. La Porcada signs both products with Denniston Architects. Authorial coherence the UHNWI recognizes and pays for.","vd.tag.pw":"La Porcada",
+    "vd.r7.c":"Selective membership","vd.r7.a":"Isla Palenque accepts open bookings without filter. La Porcada imposes 30,000 → 500 → 50 funnel (1.67%). Statistical scarcity sustains price and projects revaluation.","vd.tag.pw":"La Porcada",
+    "vd.r8.c":"Construction system","vd.r8.a":"Isla Palenque: local barefoot construction. La Porcada: negative-carbon CLT, galvanized steel, marine epoxy, green roofs, solar power. The 2026 technical body against 2010 barefoot.","vd.tag.pw":"La Porcada",
+    "vd.r9.c":"Nightlife","vd.r9.a":"Isla Palenque offers dinners and bonfire. La Porcada has private casino and live shows. For the UHNWI guest seeking day discretion and night option, La Porcada wins.","vd.tag.pw":"La Porcada",
+    "vd.r10.c":"Self-sufficiency","vd.r10.a":"Isla Palenque is an eco-resort with local orchard and partial energy. La Porcada produces its own energy, spring water, Brahman beef and orchard. Total autonomy, not partial.","vd.tag.pw":"La Porcada",
+    "vd.r11.c":"Hospital and health","vd.r11.a":"Isla Palenque has a first-aid kit and refers emergencies to David or Boca Chica. La Porcada has a private hospital on the island, 24/7. The difference between an attended and a referred emergency.","vd.tag.pw":"La Porcada",
+    "vd.r12.c":"Marina and nautical","vd.r12.a":"Isla Palenque has a boarding pier for transfers, no marina. La Porcada offers 24 berths for 40–80 m yachts, electric water taxis, no-wake zones. Superior scale marina.","vd.tag.pw":"La Porcada",
+    "th.eyebrow":"The thesis",
+    "th.h1":"Two neighboring islands.",
+    "th.h2":"Two visions of luxury.",
+    "th.p1":"Isla Palenque will remain the benchmark neighboring eco-resort in the Gulf of Chiriquí. Its intimate scale, its eco commitment, its barefoot luxury — all of that has value and deserves respect. But when a global investor compares where to place USD 25M in a Beach House or USD 200M in an Oasis, La Porcada wins on twelve of twelve technical criteria.",
+    "th.p2":"It wins on scale because 437 ha beats 162. It wins on units because 158 beats 9. It wins on operator because Aman beats Cayuga. It wins on ownership because it sells residences, not just lodging. It wins on ADR because USD 35,000 beats USD 3,000. It wins on architecture because Denniston signs both products. It wins on membership, on construction, on nightlife, on self-sufficiency, on hospital and on marina. Twelve of twelve.",
+    "th.p3":"Isla Palenque is regional barefoot luxury. La Porcada is world premium patrimony. They don't compete in the same category: they compete in the same geography. And there, in the Gulf of Chiriquí, La Porcada is the neighbor that changes the neighborhood's category.",
+    "th.kicker":"Conclusion · closing of the regional comparison",
+    "th.close":"« La Porcada is not the next Isla Palenque. It is what Isla Palenque would have been if it had been built at patrimonial scale, with Aman, with Denniston, with CLT, with casino, with own hospital and with 50 over-water villas. The neighbor that changes the category of the Gulf of Chiriquí. »",
+    "foot.tag":"Investment Pioneer",
+    "foot.l1":"Isla Porcada · Chiriquí · Panama",
+    "foot.motto":"« Nature is not domesticated, it is revered. »"
+  }
+};
+
+function applyLanguage(lang){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang][key] !== undefined){
+      el.innerHTML = translations[lang][key];
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+});
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold:0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+applyLanguage('es');
+</script>
+</body>
+</html>
